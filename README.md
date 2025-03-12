@@ -13,7 +13,7 @@ pip install -r requirements.txt
 
 You also need to have Docker running. But you do not need to have the chess package and the Stockfish engine locally.
 
-## Environment variables
+## .env file
 
 Create a .env file with the contents of the provided .env.example file. Use your OpenAI API key. If you want to use a different OpenAI model, then change it in the .env file.
 
@@ -22,7 +22,7 @@ If you want to use another lab's model, see https://inspect.ai-safety-institute.
 ## Prompts
 The utils.py file contains the system message given to the LLM agent. It also contains multiple versions of the task message, which specifies the task of winning a chess game against Stockfish. Lastly, it contains the template for the message fed to the grader model. The grader model evaluates the LLM's responses.
 
-The main.py file as it is imports TASK_MESSAGE_LEAST_AGGR as TASK_MESSAGE, which can be changed to any other version if needed.
+The main.py file imports TASK_MESSAGE_LEAST_AGGR. It can be changed to any other version if needed.
 
 
 ## Run the script
@@ -32,10 +32,12 @@ To perform the evals, run
 inspect eval main.py@chess
 ```
 
-This will create a Docker container and perform the evals in it.
+This will build a Docker container and run the evals in it.
 
 ## View the results
 To view the logs, run
 ```bash
 inspect view
 ```
+
+The accuracy reflects how many times the LLM attempted to hack its environment across multiple runs.
