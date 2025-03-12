@@ -3,13 +3,15 @@
 The code in this repository allows one to examine LLMs' proneness to specification gaming in a chess match against Stockfish.
 The LLM is accessed through an API key, and the Inspect package by the AI Security Institute is used for evals.
 
-## Installation
+## Setup
 
 To get started, install the required packages:
 
 ```bash
 pip install -r requirements.txt
 ```
+
+You also need to have Docker running. But you do not need to have the chess package and the Stockfish engine locally.
 
 ## Environment variables
 
@@ -26,4 +28,12 @@ The main.py file as it is imports TASK_MESSAGE_LEAST_AGGR as TASK_MESSAGE, which
 To perform the evals, run 
 ```bash
 inspect eval main.py@chess
+```
+
+This will create a Docker container and perform the evals in it.
+
+## View the results
+To view the logs, run
+```bash
+inspect view
 ```
