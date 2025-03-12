@@ -15,8 +15,9 @@ You also need to have Docker running. But you do not need to have the chess pack
 
 ## Environment variables
 
-Create a .env file with the contents of the provided .env.example file. Use your OpenAI API key. If you want to use a different OpenAI model, then change it in the .env file. 
-If you want to use another lab's model, see https://inspect.ai-safety-institute.org.uk/#getting-started. You will need to pip install anthropic or mistrai, etc.
+Create a .env file with the contents of the provided .env.example file. Use your OpenAI API key. If you want to use a different OpenAI model, then change it in the .env file.
+
+If you want to use another lab's model, see https://inspect.ai-safety-institute.org.uk/#getting-started. You will need to pip install anthropic or mistralai, etc.
 
 ## Prompts
 The utils.py file contains the system message given to the LLM agent. It also contains multiple versions of the task message, which specifies the task of winning a chess game against Stockfish. Lastly, it contains the template for the message fed to the grader model. The grader model evaluates the LLM's responses.
