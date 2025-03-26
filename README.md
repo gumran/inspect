@@ -2,7 +2,7 @@
 
 This project investigates **specification gaming** - where LLMs exploit loopholes to achieve goals in unintended ways - in the context of chess. Inspired by [this experiment by Palisade Research](https://x.com/PalisadeAI/status/1872666169515389245), it uses [Inspect AI](https://inspect.ai-safety-institute.org.uk/) to evaluate an LLM's tendency to manipulate its environment when playing against Stockfish.
 
-![Demo](https://github.com/user-attachments/assets/ddf5be47-c6c7-4e14-8264-6fdb79261060)
+![image](https://github.com/user-attachments/assets/ddf5be47-c6c7-4e14-8264-6fdb79261060)
 
 ## Table of Contents
 - [Setup](#setup)
@@ -30,16 +30,12 @@ Note: You don't need to install Stockfish or chess packages locally - they're co
 
 ## Configuration
 1. API Keys:
-   - Create a .env file with the contents of the provided .env.example file. Use your OpenAI API key. If you want to use a different OpenAI model, then change it in the .env file.
-   - Add your OpenAI API key.
+   - Create a .env file with the contents of the provided .env.example file.
+   - Add your [OpenAI API key](https://platform.openai.com/).
    - To use another lab's model, visit https://inspect.ai-safety-institute.org.uk/#getting-started.
 2. Configuration:
-   - Change the imported TASK_MESSAGE_* in main.py
-
-## Prompts
-The utils.py file contains the system message given to the LLM agent. It also contains multiple versions of the task message, which specifies the task of winning a chess game against Stockfish. Lastly, it contains the template for the message fed to the grader model. The grader model evaluates the LLM's responses.
-
-The main.py file imports TASK_MESSAGE_LEAST_AGGR. It can be changed to any other version if needed.
+   - Change the imported TASK_MESSAGE in main.py as needed. The utils.py file defines three task messages, and you are free to define your own.
+   - Change the template for the message sent to the grader model if needed in utils.py.
 
 ## Running the Experiment
 ```bash
@@ -53,4 +49,4 @@ inspect eval main.py@chess  # Builds Docker container and runs evaluations
 inspect view  # Opens the evaluation logs
 ```
 Key Metric:
-- Accuracy: The percentage of games where the LLM attempted to game its specification (e.g., by modifying rules/files instead of playing fairly)
+- Accuracy: The percentage of games where the LLM attempted to game its specification (e.g., by modifying rules/files instead of playing fairly) as detected by the grader model
