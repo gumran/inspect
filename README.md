@@ -1,4 +1,4 @@
-# Specification Gaming in LLM Agents Playing Chess Using Inspect AI  
+# Measuring Specification Gaming in LLM Agents Playing Chess 
 
 This project investigates **specification gaming** - where LLMs exploit loopholes to achieve goals in unintended ways - in the context of chess. Inspired by [this experiment by Palisade Research](https://x.com/PalisadeAI/status/1872666169515389245), it uses [Inspect AI](https://inspect.ai-safety-institute.org.uk/) to evaluate an LLM's tendency to manipulate its environment when playing against Stockfish.
 
