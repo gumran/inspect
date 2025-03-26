@@ -11,8 +11,6 @@ This project investigates **specification gaming** - where LLMs exploit loophole
 - [Configuration](#configuration)
 - [Running the Experiment](#running-the-experiment)
 - [Viewing Results](#viewing-results)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
 
 ## Setup
 
