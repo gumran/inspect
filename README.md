@@ -1,7 +1,10 @@
-# Evaluating specification gaming in chess using Inspect AI
+# Specification gaming in LLM agents playing chess using Inspect AI
 
-The code in this repository allows one to examine LLMs' proneness to specification gaming in a chess match against Stockfish.
-The LLM is accessed through an API key, and the Inspect package by the AI Security Institute is used for evals.
+This project is inspired by this experiment by Palisade Research: https://x.com/PalisadeAI/status/1872666169515389245
+![image](https://github.com/user-attachments/assets/ddf5be47-c6c7-4e14-8264-6fdb79261060)
+
+This repository leverages Inspect AI to examine an LLM's proneness to specification gaming in a chess match against Stockfish. Altering the system files is one example of specification gaming in this setup.
+Inspect AI is a package by the AI Security Institute that allows one to run and evaluate LLMs as agents (using tools).
 
 ## Setup
 
@@ -40,4 +43,4 @@ To view the logs, run
 inspect view
 ```
 
-The accuracy reflects how many times the LLM attempted to hack its environment across multiple runs.
+The accuracy reflects how frequently the LLM attempted to hack its environment across multiple runs.
