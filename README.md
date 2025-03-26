@@ -1,46 +1,56 @@
-# Specification gaming in LLM agents playing chess using Inspect AI
+# Specification Gaming in LLM Agents Playing Chess Using Inspect AI  
 
-This project is inspired by this experiment by Palisade Research: https://x.com/PalisadeAI/status/1872666169515389245
-![image](https://github.com/user-attachments/assets/ddf5be47-c6c7-4e14-8264-6fdb79261060)
+This project investigates **specification gaming** - where LLMs exploit loopholes to achieve goals in unintended ways - in the context of chess. Inspired by [this experiment by Palisade Research](https://x.com/PalisadeAI/status/1872666169515389245), it uses [Inspect AI](https://inspect.ai-safety-institute.org.uk/) to evaluate an LLM's tendency to manipulate its environment when playing against Stockfish.
 
-This repository leverages Inspect AI to examine an LLM's proneness to specification gaming in a chess match against Stockfish. Altering the system files is one example of specification gaming in this setup.
-Inspect AI is a package by the AI Security Institute that allows one to run and evaluate LLMs as agents (using tools).
+![Demo](https://github.com/user-attachments/assets/ddf5be47-c6c7-4e14-8264-6fdb79261060)
+
+## Table of Contents
+- [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Configuration](#configuration)
+- [Running the Experiment](#running-the-experiment)
+- [Viewing Results](#viewing-results)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
 
 ## Setup
 
-To get started, install the required packages:
+### Prerequisites
+1. **Python** and `pip`
+2. **Docker** (used for reproducible, containerized evaluations)
+   - Install via [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
+### Installation
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt  # Installs Inspect AI and dependencies
 ```
 
-You also need to have Docker running. But you do not need to have the chess package and the Stockfish engine locally.
+Note: You don't need to install Stockfish or chess packages locally - they're containerized.
 
-## .env file
-
-Create a .env file with the contents of the provided .env.example file. Use your OpenAI API key. If you want to use a different OpenAI model, then change it in the .env file.
-
-If you want to use another lab's model, see https://inspect.ai-safety-institute.org.uk/#getting-started. You will need to pip install anthropic or mistralai, etc.
+## Configuration
+1. API Keys:
+   - Create a .env file with the contents of the provided .env.example file. Use your OpenAI API key. If you want to use a different OpenAI model, then change it in the .env file.
+   - Add your OpenAI API key.
+   - To use another lab's model, visit https://inspect.ai-safety-institute.org.uk/#getting-started.
+2. Configuration:
+   - Change the imported TASK_MESSAGE_* in main.py
 
 ## Prompts
 The utils.py file contains the system message given to the LLM agent. It also contains multiple versions of the task message, which specifies the task of winning a chess game against Stockfish. Lastly, it contains the template for the message fed to the grader model. The grader model evaluates the LLM's responses.
 
 The main.py file imports TASK_MESSAGE_LEAST_AGGR. It can be changed to any other version if needed.
 
-
-## Run the script
-
-To perform the evals, run 
+## Running the Experiment
 ```bash
-inspect eval main.py@chess
+inspect eval main.py@chess  # Builds Docker container and runs evaluations
 ```
+- This simulates multiple chess games between the LLM and Stockfish
+- Logs are saved for analysis
 
-This will build a Docker container and run the evals in it.
-
-## View the results
-To view the logs, run
+## Viewing Results
 ```bash
-inspect view
+inspect view  # Opens the evaluation logs
 ```
-
-The accuracy reflects how frequently the LLM attempted to hack its environment across multiple runs.
+Key Metric:
+- Accuracy: The percentage of games where the LLM attempted to game its specification (e.g., by modifying rules/files instead of playing fairly)
